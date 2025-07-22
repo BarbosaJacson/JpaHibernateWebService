@@ -1,6 +1,6 @@
 package com.example.JPAHibernate.repositories;
 
-import entities.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,6 +19,7 @@ public class Person implements Serializable {
     private String phone;
     private String password;
 
+
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
@@ -32,6 +33,7 @@ public class Person implements Serializable {
         this.phone = phone;
         this.password = password;
     }
+
 
     public Long getId() {
         return id;
