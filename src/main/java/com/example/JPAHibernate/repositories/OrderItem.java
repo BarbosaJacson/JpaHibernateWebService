@@ -1,5 +1,4 @@
 package com.example.JPAHibernate.repositories;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -26,7 +25,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    @JsonIgnore
+
     public Order getOrder() {
         return id.getOrder();
     }
@@ -34,6 +33,7 @@ public class OrderItem implements Serializable {
         id.setOrder(order);
     }
 
+    @JsonIgnore
     public Product getProduct() {
         return id.getProduct();
     }
