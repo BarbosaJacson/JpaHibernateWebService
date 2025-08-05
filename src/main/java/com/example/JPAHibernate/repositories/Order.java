@@ -1,11 +1,14 @@
     package com.example.JPAHibernate.repositories;
-
     import com.fasterxml.jackson.annotation.JsonFormat;
     import com.fasterxml.jackson.annotation.JsonIgnore;
     import jakarta.persistence.*;
 
     import java.io.Serializable;
     import java.time.Instant;
+    import java.util.HashSet;
+    import java.util.Objects;
+    import java.util.Set;
+
     @Entity
     @Table(name="tb_order")
     public class Order implements Serializable {
@@ -22,6 +25,8 @@
         @ManyToOne
         @JoinColumn(name = "client_id")
         private Person client;
+        @OneToMany(mappedBy = "id.order")
+        private Set<OrderItem> items = new HashSet<>();
 
         public Order() {
         }
@@ -32,6 +37,7 @@
            setOrderStatus(orderStatus);
             this.client = client;
         }
+
 
         public Long getId() {
             return id;
@@ -70,5 +76,35 @@
 
         public void setClient(Person client) {
             this.client = client;
+        }
+
+        public Set<OrderItem> getItems() {
+            return items;
+        }
+
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((id == null) ? 0 : id.hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Order other = (Order) obj;
+            if (id == null) {
+                if (other.id != null)
+                    return false;
+            } else if (!id.equals(other.id))
+                return false;
+            return true;
         }
     }
