@@ -1,4 +1,4 @@
-package com.example.JPAHibernate;
+package com.example.JPAHibernate.repositories;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
