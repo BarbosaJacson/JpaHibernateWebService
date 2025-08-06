@@ -27,6 +27,8 @@
         private Person client;
         @OneToMany(mappedBy = "id.order")
         private Set<OrderItem> items = new HashSet<>();
+        @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+        private Payment payment;
 
         public Order() {
         }
@@ -38,8 +40,7 @@
             this.client = client;
         }
 
-
-        public Long getId() {
+                public Long getId() {
             return id;
         }
 
@@ -77,6 +78,15 @@
         public void setClient(Person client) {
             this.client = client;
         }
+
+        public Payment getPayment() {
+            return payment;
+        }
+
+        public void setPayment(Payment payment) {
+            this.payment = payment;
+        }
+
 
         public Set<OrderItem> getItems() {
             return items;
