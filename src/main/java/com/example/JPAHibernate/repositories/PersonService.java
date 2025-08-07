@@ -25,6 +25,11 @@ public List<Person> finfALl(){
         return repository.save(obj);
     }
 
+    public void delete( Long id) {
+
+        repository.deleteById(id);
+    }
+
 
 
 }
